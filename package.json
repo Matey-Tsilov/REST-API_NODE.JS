@@ -4,12 +4,15 @@
   "description": "This will be the basis for all of my personal Web Applications. I will adapt it to all the new functionalities and features of express.js and all the key dependencies so that it stays up to date.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }
