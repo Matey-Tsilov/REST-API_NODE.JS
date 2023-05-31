@@ -1,23 +1,17 @@
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+const jwt = require("../utils/jwt");
 const { SECRET } = require("../constants");
 
 // exports.register = (userData) =>  
 // exports.login = (email, password) => 
 // exports.logout = (id) =>  
 
-exports.generateToken = (user) => {
+exports.generateToken = async (user) => {
     const payload = { _id: user._id, username: user.username, email: user.email };
     const options = {expiresIn: '2d'}
   
-    const tokenPromise = new Promise((resolve, reject) => {
-      jwt.sign(payload, SECRET, options, (err, decodedToken) => {
-          if (err) {
-             return reject(err)
-          }
+    //use promisified version
+    const tokenPromise = await jwt.sign(payload, SECRET, options)
   
-          resolve(decodedToken)
-      });
-  })
   return tokenPromise
 } 
