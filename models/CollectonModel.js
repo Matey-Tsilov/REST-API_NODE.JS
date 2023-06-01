@@ -8,6 +8,7 @@ const collectionSchema = new mongoose.Schema({
   example1: {
     type: Number
   }
+    //add custom msgs: [true, 'Username field is mandatory!']
 });
 
 const Collection = mongoose.model("Collection", collectionSchema);

@@ -9,15 +9,6 @@ router.get('/catalog', async (req, res) => {
         res.status(404).json({message: 'Failed to load ressources'})
     }
 })
-router.post('/catalog', async (req, res) => {
-    const body = req.body
-    try {
-        const createdItem = await collectionService.create(body)
-        res.status(201).json(createdItem)
-    } catch (error) {
-        res.status(404).json({message: 'Failed to create ressource'})
-    }
-})
 router.get('/catalog/:id', async (req, res) => {
     const id = req.params.id
     try {
@@ -25,6 +16,15 @@ router.get('/catalog/:id', async (req, res) => {
         res.json(item)
     } catch (error) {
         res.status(404).json({message: 'Failed to load ressources'})
+    }
+})
+router.post('/catalog', async (req, res) => {
+    const body = req.body
+    try {
+        const createdItem = await collectionService.create(body)
+        res.status(201).json(createdItem)
+    } catch (error) {
+        res.status(404).json({message: 'Failed to create ressource'})
     }
 })
 router.put('/catalog/:id', async (req, res) => {
