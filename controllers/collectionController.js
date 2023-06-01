@@ -1,8 +1,9 @@
 const router = require('express').Router()
+const collectionService = require('../services/collectionService')
 
-router.get('/catalog', (req, res) => {
-    //display all records in a collection
-    res.json({})
+router.get('/catalog', async (req, res) => {
+    const items = await collectionService.getAll()
+    res.json(items)
 })
 router.post('/catalog', (req, res) => {
     const body = req.body
