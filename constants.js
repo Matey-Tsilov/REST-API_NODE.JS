@@ -1,3 +1,3 @@
 exports.PORT = 3000
 exports.SECRET = '8237f41e0a4ca185b68af34fe2c6a5134f91530a182e34193db1c0a30273a4f6'
-exports.CONNECTION_STRING = 'mongodb://127.0.0.1:27017/......'
+exports.CONNECTION_STRING = 'mongodb://127.0.0.1:27017/custom'
