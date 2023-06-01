@@ -15,7 +15,7 @@ router.post('/catalog', async (req, res) => {
         const createdItem = await collectionService.create(body)
         res.status(201).json(createdItem)
     } catch (error) {
-        res.status(404).json({message: 'Failed to load ressources'})
+        res.status(404).json({message: 'Failed to create ressource'})
     }
 })
 router.get('/catalog/:id', async (req, res) => {
@@ -26,7 +26,25 @@ router.get('/catalog/:id', async (req, res) => {
     } catch (error) {
         res.status(404).json({message: 'Failed to load ressources'})
     }
-    
+})
+router.put('/catalog/:id', async (req, res) => {
+    const id = req.params.id
+    const updatedItem = req.body
+    try {
+        const result = await collectionService.updateById(id, updatedItem)
+        res.json(result)
+    } catch (error) {
+        res.status(404).json({message: 'Failed to update ressource'})
+    }
+})
+router.delete('/catalog/:id', async (req, res) => {
+    const id = req.params.id
+    try {
+        const result = await collectionService.deleteById(id)
+        res.json(result)
+    } catch (error) {
+        res.status(404).json({message: 'Failed to delete ressource'})
+    }
 })
 
 module.exports = router
