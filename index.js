@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const CORSMiddleware = require('./middlewares/headersMiddleware')
 const { PORT, CONNECTION_STRING } = require('./constants')
+const router = require('./routes')
 
 
 async function start() {
@@ -12,12 +13,14 @@ async function start() {
         console.log('Error connecting to DB');
         return process.exit(1)
     }
-
+    //creating the REST application
     const server = express()
-
-    server.use(CORSMiddleware)
+    //middlewares
     server.use(express.json())
-
+    server.use(CORSMiddleware())
+    //router
+    server.use(router)
+    //initial message
     server.listen(PORT, () => console.log(`App is listening on port ${PORT}`))
 }
 
