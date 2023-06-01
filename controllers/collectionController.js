@@ -1,19 +1,19 @@
 const router = require('express').Router()
 const collectionService = require('../services/collectionService')
-
+//сложи всичко в try catchs!!!
 router.get('/catalog', async (req, res) => {
     const items = await collectionService.getAll()
     res.json(items)
 })
-router.post('/catalog', (req, res) => {
+router.post('/catalog', async (req, res) => {
     const body = req.body
-    //create new record in DB
-    res.json({})
+    const createdItem = await collectionService.create(body)
+    res.status(201).json(createdItem)
 })
-router.get('/catalog/:id', (req, res) => {
+router.get('/catalog/:id', async (req, res) => {
     const id = req.params.id
-    //Find the record and return it
-    res.json({})
+    const item = await collectionService.getById(id)
+    res.json(item)
 })
 
 module.exports = router
