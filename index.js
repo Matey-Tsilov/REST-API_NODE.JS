@@ -4,7 +4,6 @@ const CORSMiddleware = require('./middlewares/headersMiddleware')
 const { PORT, CONNECTION_STRING } = require('./constants')
 const router = require('./routes')
 
-
 async function start() {
     try {
         const db = await mongoose.connect(CONNECTION_STRING)
@@ -23,5 +22,4 @@ async function start() {
     //initial message
     server.listen(PORT, () => console.log(`App is listening on port ${PORT}`))
 }
-
 start()
