@@ -1,9 +1,15 @@
-const mongoose = require('mongoose').Schema
+const mongoose = require("mongoose")
 
 const collectionSchema = new mongoose.Schema({
-//key and values
-})
+  example: {
+    type: String,
+    required: true,
+  },
+  example1: {
+    type: Number
+  }
+});
 
-const Collection = mongoose.model('Collection', collectionSchema)
+const Collection = mongoose.model("Collection", collectionSchema);
 
-module.exports = Collection
+module.exports = Collection;
