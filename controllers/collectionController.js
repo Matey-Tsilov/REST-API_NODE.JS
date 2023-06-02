@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const collectionService = require('../services/collectionService')
+const mongooseErrorMapper = require('../utils/mongooseErrorMapper')
 
 router.get('/', async (req, res) => {
     try {
@@ -20,14 +21,12 @@ router.get('/:id', async (req, res) => {
 })
 router.post('/', async (req, res) => {
     const body = req.body
-    console.log(body);
-    
     try {
         const createdItem = await collectionService.create(body)
         res.status(201).json(createdItem)
     } catch (error) {
-        console.log(error);
-        res.status(404).json({message: 'Failed to create ressource'})
+        const errorMsg = mongooseErrorMapper(error)
+        res.status(404).json({message: errorMsg})
     }
 })
 router.put('/:id', async (req, res) => {

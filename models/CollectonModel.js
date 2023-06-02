@@ -3,7 +3,8 @@ const mongoose = require("mongoose")
 const collectionSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'This property is required!']
+    required: [true, 'This property is required!'],
+    minLength: [5, "The name should be more than 5 symbols"]
   },
   pages: {
     type: Number,
