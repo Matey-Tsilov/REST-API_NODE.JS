@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const CORSMiddleware = require('./middlewares/CORSmiddleware')
+const validateTokenMiddleware = require('./middlewares/validateTokenMiddleware')
 const router = require('./routes')
 const { PORT, CONNECTION_STRING } = require('./constants')
 
@@ -15,6 +16,7 @@ async function start() {
     //creating the REST application
     const server = express()
     //middlewares
+    server.use(validateTokenMiddleware())
     server.use(express.json())
     server.use(CORSMiddleware())
     //router
