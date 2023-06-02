@@ -4,7 +4,7 @@ const mongooseErrorMapper = require('../utils/mongooseErrorMapper')
 
 router.post("/login", async (req, res) => {
   const {email, password} = req.body;
-  
+
   try {
     const session = await userService.login(email, password)
     res.json(session);
@@ -24,9 +24,9 @@ router.post("/register", async (req, res) => {
     res.status(404).json({ message: errorMsg });
   }
 });
-router.get("/logout/:id", (req, res) => {
-  //delete record from DB
-  req.json({});
-});
-
+router.get('/logout', (req, res) => {
+    //token will be blacklisted! And ehan logged in will be изваден!
+    userService.logout(req.user.token)
+    res.status(204).end()
+})
 module.exports = router;
