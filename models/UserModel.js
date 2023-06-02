@@ -6,19 +6,19 @@ const userSchema = new mongoose.Schema({
   //Change when doing a project!
   username: {
     type: String,
-    required: true,
+    required: [true, 'The username is required!'],
     minLength: [5, 'The username should be atleast 5 characters long!']
     //add custom msgs: [true, 'Username field is mandatory!']
   },
   email: {
     type: String,
-    required: true,
-    unique: true,
+    required: [true, 'The email is required!'],
+    unique: [true, 'Email is already taken'],
     minLength: [10, 'The email should be atleast 10 characters long!']
   },
   password: {
     type: String,
-    required: true,
+    required: [true, 'The password is required!'],
     minLength: [4, 'The password should be atleast 4 characters long!']
   },
 });
