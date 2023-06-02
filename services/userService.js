@@ -12,10 +12,10 @@ exports.login = async (email, password) => {
 const existing = await User.findOne({email})
 const isSame = await bcrypt.compare(password, existing?.password)
 if (!existing) {
-  throw new Error('Such email does not exist!')
+  throw new Error('Incorrect email or password!')
 }
 if (!isSame) {
-  throw new Error('Passwords mismatch!')
+  throw new Error('Incorrect email or password!')
 }
 return await generateSession(existing)
 }
