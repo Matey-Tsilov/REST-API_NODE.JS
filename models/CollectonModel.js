@@ -1,14 +1,15 @@
 const mongoose = require("mongoose")
 
 const collectionSchema = new mongoose.Schema({
-  example: {
+  name: {
     type: String,
-    required: true,
+    required: [true, 'This property is required!']
   },
-  example1: {
-    type: Number
+  pages: {
+    type: Number,
+    min: [100, 'Book pages must be between 100 and 999 pages'],
+    max: [999, 'Book pages must be between 100 and 999 pages']
   }
-    //add custom msgs: [true, 'Username field is mandatory!']
 });
 
 const Collection = mongoose.model("Collection", collectionSchema);

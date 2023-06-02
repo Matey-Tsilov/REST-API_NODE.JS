@@ -1,8 +1,8 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const CORSMiddleware = require('./middlewares/CORSmiddleware')
-const { PORT, CONNECTION_STRING } = require('./constants')
 const router = require('./routes')
+const { PORT, CONNECTION_STRING } = require('./constants')
 
 async function start() {
     try {

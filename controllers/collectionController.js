@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const collectionService = require('../services/collectionService')
 
-router.get('/catalog', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const items = await collectionService.getAll()
         res.json(items)
@@ -9,7 +9,7 @@ router.get('/catalog', async (req, res) => {
         res.status(404).json({message: 'Failed to load ressources'})
     }
 })
-router.get('/catalog/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     const id = req.params.id
     try {
         const item = await collectionService.getById(id)
@@ -18,16 +18,19 @@ router.get('/catalog/:id', async (req, res) => {
         res.status(404).json({message: 'Failed to load ressources'})
     }
 })
-router.post('/catalog', async (req, res) => {
+router.post('/', async (req, res) => {
     const body = req.body
+    console.log(body);
+    
     try {
         const createdItem = await collectionService.create(body)
         res.status(201).json(createdItem)
     } catch (error) {
+        console.log(error);
         res.status(404).json({message: 'Failed to create ressource'})
     }
 })
-router.put('/catalog/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
     const id = req.params.id
     const updatedItem = req.body
     try {
@@ -37,7 +40,7 @@ router.put('/catalog/:id', async (req, res) => {
         res.status(404).json({message: 'Failed to update ressource'})
     }
 })
-router.delete('/catalog/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     const id = req.params.id
     try {
         const result = await collectionService.deleteById(id)
