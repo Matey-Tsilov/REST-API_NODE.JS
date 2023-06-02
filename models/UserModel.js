@@ -7,19 +7,19 @@ const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
-    minLength: 5,
+    minLength: [5, 'The username should be atleast 5 characters long!']
     //add custom msgs: [true, 'Username field is mandatory!']
   },
   email: {
     type: String,
     required: true,
     unique: true,
-    minLength: 10,
+    minLength: [10, 'The email should be atleast 10 characters long!']
   },
   password: {
     type: String,
     required: true,
-    minLength: 4,
+    minLength: [4, 'The password should be atleast 4 characters long!']
   },
 });
 
