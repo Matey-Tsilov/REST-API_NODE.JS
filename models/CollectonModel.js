@@ -1,6 +1,8 @@
 const mongoose = require("mongoose")
 
 const collectionSchema = new mongoose.Schema({
+  //example properties with mongooseValidations
+  //Change when doing a project!
   name: {
     type: String,
     required: [true, 'This property is required!'],

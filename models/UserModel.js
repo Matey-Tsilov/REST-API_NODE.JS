@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema({
+  //example properties with mongooseValidations
+  //Change when doing a project!
   username: {
     type: String,
     required: true,

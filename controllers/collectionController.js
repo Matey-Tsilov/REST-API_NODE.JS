@@ -7,7 +7,8 @@ router.get('/', async (req, res) => {
         const items = await collectionService.getAll()
         res.json(items)
     } catch (error) {
-        res.status(404).json({message: 'Failed to load ressources'})
+        const errorMsg = mongooseErrorMapper(error)
+        res.status(404).json({message: errorMsg})
     }
 })
 router.get('/:id', async (req, res) => {
@@ -16,7 +17,8 @@ router.get('/:id', async (req, res) => {
         const item = await collectionService.getById(id)
         res.json(item)
     } catch (error) {
-        res.status(404).json({message: 'Failed to load ressources'})
+        const errorMsg = mongooseErrorMapper(error)
+        res.status(404).json({message: errorMsg})
     }
 })
 router.post('/', async (req, res) => {
@@ -36,7 +38,8 @@ router.put('/:id', async (req, res) => {
         const result = await collectionService.updateById(id, updatedItem)
         res.json(result)
     } catch (error) {
-        res.status(404).json({message: 'Failed to update ressource'})
+        const errorMsg = mongooseErrorMapper(error)
+        res.status(404).json({message: errorMsg})
     }
 })
 router.delete('/:id', async (req, res) => {
@@ -45,7 +48,8 @@ router.delete('/:id', async (req, res) => {
         const result = await collectionService.deleteById(id)
         res.json(result)
     } catch (error) {
-        res.status(404).json({message: 'Failed to delete ressource'})
+        const errorMsg = mongooseErrorMapper(error)
+        res.status(404).json({message: errorMsg})
     }
 })
 
