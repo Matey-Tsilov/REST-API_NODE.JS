@@ -21,8 +21,6 @@ if (!isSame) {
 }
 return await generateSession(existing)
 }
-//middleware function to validate which user is logged! 
-//put the user token in req.user so that when he does logout req, we can put the token in a blacklist!
 exports.validateToken = async (token) => {
   if (blackList.includes(token)) {
     console.log('Token is blacklisted!');

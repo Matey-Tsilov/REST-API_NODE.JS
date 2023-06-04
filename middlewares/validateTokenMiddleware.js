@@ -1,6 +1,7 @@
 const { validateToken } = require("../services/userService")
 
 module.exports = () => async (req, res, next) => {
+    //we wait one of the recieved headers to be x-authorization, so that we can handle logout requests
 const token = req.headers["x-authorization"]
 
 if (token) {
