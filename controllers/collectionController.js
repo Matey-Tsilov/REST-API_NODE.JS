@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const { isUser } = require('../middlewares/guards')
 const collectionService = require('../services/collectionService')
 const mongooseErrorMapper = require('../utils/mongooseErrorMapper')
 
@@ -21,7 +22,7 @@ router.get('/:id', async (req, res) => {
         res.status(404).json({message: errorMsg})
     }
 })
-router.post('/', async (req, res) => {
+router.post('/', isUser(), async (req, res) => {
     const body = req.body
     body._ownerId = req.user._id
     try {
@@ -32,7 +33,7 @@ router.post('/', async (req, res) => {
         res.status(404).json({message: errorMsg})
     }
 })
-router.put('/:id', async (req, res) => {
+router.put('/:id', isUser(), async (req, res) => {
     const id = req.params.id
     const updatedItem = req.body
     try {
@@ -43,7 +44,7 @@ router.put('/:id', async (req, res) => {
         res.status(404).json({message: errorMsg})
     }
 })
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', isUser(), async (req, res) => {
     const id = req.params.id
     try {
         const result = await collectionService.deleteById(id)
