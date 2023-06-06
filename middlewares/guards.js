@@ -14,3 +14,4 @@ exports.isOwner = (api) => async (req, res, next) => {
         res.status(403).json({message: 'You are not the owner!'})
     }
 }
+
