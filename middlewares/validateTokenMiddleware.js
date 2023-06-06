@@ -15,6 +15,7 @@ if (token) {
         }
 
     } catch (error) {
+        console.log(error);
         return res.status(401).json({message: 'Invalid AccessToken. Please log in!'})
     }
 }

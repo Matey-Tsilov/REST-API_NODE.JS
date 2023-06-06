@@ -23,6 +23,7 @@ router.get('/:id', async (req, res) => {
 })
 router.post('/', async (req, res) => {
     const body = req.body
+    body._ownerId = req.user._id
     try {
         const createdItem = await collectionService.create(body)
         res.status(201).json(createdItem)

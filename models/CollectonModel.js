@@ -1,4 +1,4 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
 const collectionSchema = new mongoose.Schema({
   //example properties with mongooseValidations
@@ -12,6 +12,10 @@ const collectionSchema = new mongoose.Schema({
     type: Number,
     min: [100, 'Book pages must be between 100 and 999 pages'],
     max: [999, 'Book pages must be between 100 and 999 pages']
+  },
+  _ownerId: {
+   type: mongoose.Types.ObjectId,
+   ref: 'User'
   }
 });
 
